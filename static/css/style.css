@@ -1,0 +1,52 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.delete-item {
+  float: right;
+  padding-right: 10px;
+}
+
+.edit-item {
+  float: right;
+  padding-left: 10px;
+}
+
+.user-header {
+    background-color:Black; background-image: linear-gradient(Black, mediumblue);
+}
+
+.user-header p {
+    padding-top: 15px;
+    color: white;
+    font-size: 25px;
+}
+
+.container-fluid {
+    background-color: lightgrey;
+}
+
+.logout{
+    position: relative;
+    left: 90%;
+    top: 25%;
+}
+
+.search-bar, .novo-cliente {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
