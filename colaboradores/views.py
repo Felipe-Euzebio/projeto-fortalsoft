@@ -27,17 +27,17 @@ def colaborador_read(request):
     sobrenome = request.GET.get('sobrenome', None)
 
     if nome or sobrenome:
-        colaborador = Colaborador.objects.filter(first_name__icontains=nome) | Colaborador.objects.filter(last_name__icontains=sobrenome)
+        colaboradores = Colaborador.objects.filter(nome__icontains=nome) | Colaborador.objects.filter(sobrenome__icontains=sobrenome)
     else:
-        colaborador = Colaborador.objects.all()
+        colaboradores = Colaborador.objects.all()
 
-    return render(request, 'colaboradores.html', {'colaborador': colaborador})
+    return render(request, 'colaboradores.html', {'colaboradores': colaboradores})
 
 # Update
 @login_required
 def colaborador_update(request, id):
-    colaborador = get_object_or_404(Colaborador, pk=id)
-    form = ColaboradorForm(request.POST or None, request.FILES or None, instance=colaborador)
+    colaboradores = get_object_or_404(Colaborador, pk=id)
+    form = ColaboradorForm(request.POST or None, request.FILES or None, instance=colaboradores)
 
     if form.is_valid():
         form.save()
@@ -48,10 +48,10 @@ def colaborador_update(request, id):
 # Delete
 @login_required
 def colaborador_delete(request, id):
-    colaborador = get_object_or_404(Colaborador, pk=id)
+    colaboradores = get_object_or_404(Colaborador, pk=id)
 
     if (request.method == 'POST'):
-        colaborador.delete()
+        colaboradores.delete()
         return redirect('colaborador_read')
 
-    return render(request, 'colaborador_confirmar_delete.html', {'colaborador': colaborador})
+    return render(request, 'colaborador_confirmar_delete.html', {'colaboradores': colaboradores})

@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% load bootstrap %}
+
+{% block title %} Confirmar Operação {% endblock %}
+
+{% block main %}
+
+    <!-- action removido. O Django agora ditará qual dos processos do CRUD irá realizar baseado na URL em questão -->
+    <h1>Tem certeza que deseja deletar {{ colaborador.nome }} {{ colaborador.sobrenome }}?</h1>
+    <form method="post" ENCTYPE="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="margin-top: 50px">Delete</button>
+    </form>
+
+{% endblock %}
+
