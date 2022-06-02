@@ -1,26 +1,50 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% load bootstrap %}
 
 {% block title %} Login {% endblock %}
 
 {% block main %}
 
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-info" style="margin-top: 50px;">Login</button>
-    </form>
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-sm-center h-100">
+				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+					<div class="text-center my-5">
+						<img src="{% static 'img/favicon.png' %}" alt="logo" width="100">
+					</div>
+					<div class="card shadow-lg">
+						<div class="card-body p-5">
+							<h1 class="fs-4 card-title fw-bold mb-4" style="text-align: center;">Administração</h1>
+							<form method="post" class="needs-validation" novalidate="" autocomplete="off">
+
+								{% csrf_token %}
+								{{ form|bootstrap }}
+
+								<div class="d-flex align-items-center">
+									<button type="submit" class="btn btn-primary ms-auto">
+										Login
+									</button>
+								</div>
+							</form>
+						</div>
+						<!--
+						<div class="card-footer py-3 border-0">
+							<div class="text-center">
+								Don't have an account? <a href="register.html" class="text-dark">Create One</a>
+							</div>
+						</div>
+						-->
+					</div>
+					<div class="text-center mt-5 text-muted">
+						Copyright &copy; 2022 &mdash; Fortalsoft.
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}
 
-{% block footer %}
-
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Desenvolvimento Web com Django 2.x</span>
-      </div>
-    </footer>
-
-{% endblock %}

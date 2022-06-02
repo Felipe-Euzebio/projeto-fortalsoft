@@ -7,14 +7,18 @@
 {% block main %}
 
     <!-- action removido. O Django agora ditará qual dos processos do CRUD irá realizar baseado na URL em questão -->
-    <h3>Novo Colaborador</h3>
-    <form method="post" ENCTYPE="multipart/form-data">
-        <div class="form-group">
-            {% csrf_token %}
-            {{ form|bootstrap }}
-            <button type="submit" class="btn btn-primary" style="margin-top: 50px">Salvar</button>
+    <div class="container">
+        <div class="container-fluid">
+            <h3>Novo Colaborador</h3>
+            <form method="post" ENCTYPE="multipart/form-data">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <button type="submit" class="btn btn-primary" style="margin-top: 50px">Salvar</button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 
 {% endblock %}
 

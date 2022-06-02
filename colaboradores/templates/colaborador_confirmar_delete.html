@@ -6,12 +6,19 @@
 
 {% block main %}
 
-    <!-- action removido. O Django agora ditará qual dos processos do CRUD irá realizar baseado na URL em questão -->
-    <h1>Tem certeza que deseja deletar {{ colaborador.nome }} {{ colaborador.sobrenome }}?</h1>
-    <form method="post" ENCTYPE="multipart/form-data">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger" style="margin-top: 50px">Delete</button>
-    </form>
+   <div class="container">
+        <br/>
+        <div class="container-fluid">
+
+            <!-- action removido. O Django agora ditará qual dos processos do CRUD irá realizar baseado na URL em questão -->
+            <h1>Tem certeza que deseja deletar {{ colaboradores.nome }} {{ colaboradores.sobrenome }}?</h1>
+            <form method="post" ENCTYPE="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" style="margin-top: 50px">Delete</button>
+            </form>
+
+        </div>
+    </div>
 
 {% endblock %}
 

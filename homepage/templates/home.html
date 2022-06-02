@@ -1,13 +1,429 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block title %} Fortalsoft — Homepage {% endblock %}
+
+{% block main %}
+
+  <header id="header" class="header header-hide">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto"><span>F</span>ortal<span>S</span>oft</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#hero">Home</a></li>
+          <li><a href="#get-started">Sobre a Empresa</a></li>
+          <li><a href="#team">Nossa Equipe</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Fale Conosco</a></li>
+
+          <li class="admin-button">
+
+            {% if user.is_authenticated %}
+
+              <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-danger" id="logout">
+                  <i class="bi bi-door-open"></i>&nbsp;Sair
+                </button>
+              </a>
+              <a href="{% url 'colaborador_read' %}">
+                <button type="button" class="btn btn-info" id="admin-btn">
+                  <i class="bi bi-box-arrow-in-right"></i><span>&nbsp;Administração</span>
+                </button>
+              </a>
+
+            {% else %}
+
+              <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-success" id="login">Logar como Admin</button>
+              </a>
+
+            {% endif %}
+
+          </li>
+
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Hero Section
+  ============================-->
+  <section id="hero" class="wow fadeIn">
+    <div class="hero-container">
+      <h1>Promovendo inovação.</h1>
+      <h2>P&D, Bootcamps, Apps &amp; muito mais...</h2>
+      <img src="{% static 'img/hero-img.png' %}" alt="Hero Imgs">
+    </div>
+  </section><!-- #hero -->
+
+  <!--==========================
+    Get Started Section
+  ============================-->
+  <section id="get-started" class="padd-section text-center wow fadeInUp">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="span6">
+          <div class="section-title text-center">
+            <h2>Conheça a nossa empresa:</h2>
+          </div>
+          <div class='embed-container'>
+            <iframe src='https://player.vimeo.com/video/66140585' frameborder='0' webkitAllowFullScreen
+                    mozallowfullscreen allowFullScreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!--==========================
+    Features Section
+  ============================-->
+
+  <section id="features" class="padd-section text-center wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Porque trabalhar conosco?</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+            <img src="{% static 'img/svg/team.png' %}" alt="img" class="img-fluid">
+            <h4>Equipes Qualificadas</h4>
+            <p>Possuímos equipes qualificadas e colaborativas, comprometidas e responsáveis para com seus deveres, sempre valorizando a importância do trabalho coletivo.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+            <img src="{% static 'img/svg/curso.svg' %}" alt="img" class="img-fluid">
+            <h4>+100 Cursos de Qualidade</h4>
+            <p>Escolha dentre diversos cursos de qualidade para a construção do seu futuro profissional ou do futuro de seus funcionários!</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+            <img src="{% static 'img/svg/ambiente.png' %}" alt="img" class="img-fluid">
+            <h4>Ambiente Saudável</h4>
+            <p>Nossa empresa visa e fornece uma ambiente de trabalho saúdavel, diversificado e harmonioso para nossos funcionários.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+            <img src="{% static 'img/svg/certificado.svg' %}" alt="img" class="img-fluid">
+            <h4>Empresa Certificada</h4>
+            <p>A FortalSoft foi premiada em diversas categorias e estamos sempre buscando ser referência no ecossistema de inovação.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--==========================
+    Team Section
+  ============================-->
+
+  <section id="team" class="padd-section text-center wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Funcionários</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="owl-carousel owl-theme">
+
+        <div>
+          <img src="{% static 'img/team/1.jpg' %}" alt="img">
+          <h4>Beutrano de Souza</h4>
+          <span>Desenvolvedor React Pleno</span>
+        </div>
+        <div>
+          <img src="{% static 'img/team/2.jpg' %}" alt="img">
+          <h4>Fernanda Sanchez</h4>
+          <span>UI/UX Designer</span>
+        </div>
+        <div>
+          <img src="{% static 'img/team/3.jpg' %}" alt="img">
+          <h4>Davi Mendes</h4>
+          <span>Desenvolvedor Django Sênior</span>
+        </div>
+        <div>
+          <img src="{% static 'img/team/4.jpg' %}" alt="img">
+          <h4>Ana Paula</h4>
+          <span>Desenvolvedora Node.js Sênior</span>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!--==========================
+    Testimonials Section
+  ============================-->
+
+  <section id="testimonials" class="padd-section text-center wow fadeInUp">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+          <div class="testimonials-content">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+              <h2 style="margin-bottom: 25px;">Confira o Feedback de nossos funcionários:</h2>
+
+              <div class="carousel-inner" role="listbox">
+
+                <div class="carousel-item  active">
+                  <div class="top-top">
+
+                    <p>Ótima equipe de desenvolvimento! Dedicados e comprometidos com seus papéis!</p>
+                    <h4>Beutrano de Souza</h4>
+                    <h5>Desenvolvedor React Pleno</h5>
+
+                  </div>
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="top-top">
+
+                    <p>Ambiente agrádavel e pessoal qualificado.</p>
+                    <h4>Fernanda Sanchez<span>UI/UX Designer</span></h4>
+
+                  </div>
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="top-top">
+
+                    <p>Bons cursos e treinamentos para futuros desenvolvedores!</p>
+                    <h4>Davi Mendes<span>Desenvolvedor Django Sênior</span></h4>
+
+                  </div>
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="top-top">
+
+                    <p>Uma das melhores empresas no ramo de TI para se trabalhar!</p>
+                    <h4>Ana Paula<span>Desenvolvedora Node.js Sênior</span></h4>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="btm-btm">
+
+                <ul class="list-unstyled carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ul>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--==========================
+    Contact Section
+  ============================-->
+  <section id="contact" class="padd-section wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Quer trabalhar conosco?</h2>
+        <p class="separator">Envie seu currículo no formulário abaixo.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-lg-3 col-md-4">
+
+          <div class="info">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p>Av. Senador Fernandes Távora<br> 137, Jóquei Clube<br> Fortaleza - CE, 60510-111</p>
+            </div>
+
+            <div class="email">
+              <i class="fa fa-envelope"></i>
+              <p>vagas@fortalsoft.com.br</p>
+            </div>
+
+            <div>
+              <i class="fa fa-phone"></i>
+              <p>+55 (85) 9 4545 6767</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+          </div>
+
+        </div>
+
+        <div class="col-lg-5 col-md-8">
+          <div class="form">
+            <div id="sendmessage">Seu currículo foi enviado!</div>
+            <div id="errormessage"></div>
+            <form action="#" method="post" role="form" class="contactForm">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nome completo" data-rule="minlen:4 required" data-msg="Nome inválido! Seu nome deve possuir pelo menos 4 caracteres." />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-rule="required" data-msg="Email inválido!" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:8 required" data-msg="Seu assunto deve conter pelo menos 8 caracteres." />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Escreva sua mensagem." placeholder="Mensagem"></textarea>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <div class="input-group custom-file-button">
+                  <label class="input-group-text" for="inputGroupFile">Currículo</label>
+                  <input type="file" class="form-control" id="inputGroupFile">
+                </div>
+              </div>
+              <div class="text-center"><button type="submit">Enviar Currículo</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- #contact -->
+
+{% endblock %}
+
+{% block footer %}
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 col-lg-4">
+          <div class="footer-logo">
+
+            <h1><a class="navbar-brand" href="#"><span>F</span>ortal<span>S</span>oft</a></h1>
+            <p>Promovendo inovação.</p>
+            <p>Somos uma empresa que visiona ser referência na área de Tecnologia da Informação.
+               Promovemos um ambiente saudável e colaborativo, com equipes qualificadas, harmoniosas, altruístas, proativas e diversificadas.</p>
+            <p>Venha fazer parte do Time FortalSoft você também!</p>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>Capacitação Tecnológica</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">Cursos</a></li>
+              <li><a href="#">Bootcamp</a></li>
+              <li><a href="#">Trainee</a></li>
+              <li><a href="#">Estágio</a></li>
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>Produtos e Serviços</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">Aplicações Web</a></li>
+              <li><a href="#">Aplicações Desktop</a></li>
+              <li><a href="#">Serviços Empresariais</a></li>
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>Suporte</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Ajuda</a></li>
+              <li><a href="#">Contate-nos</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="copyrights">
+      <div class="container">
+        <p>&copy; FortalSoft | Todos os direitos reservados.</p>
+        <div class="credits">
+          <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eStartup
+          -->
+          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Distributed by <a href="https://themewagon.com/">ThemeWagon.</a> -->
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+{% endblock %}
+
+
+
