@@ -31,6 +31,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'fortalsoft.herokuapp.com/',
     'localhost',
+    '127.0.0.1',
 ]
 
 
@@ -61,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ROOT_URLCONF = 'projeto.urls'
 
@@ -138,10 +141,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collect')
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/assets/'
 
 STATICFILES_DIRS = [
-    'static',
+    'static/assets/',
 ]
 
 MEDIA_URL = '/media/'
@@ -157,4 +160,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = 'colaborador_read'
+LOGIN_REDIRECT_URL = 'admin'

@@ -9,12 +9,16 @@
     <!-- action removido. O Django agora ditará qual dos processos do CRUD irá realizar baseado na URL em questão -->
     <div class="container">
         <div class="container-fluid">
-            <h3>Novo Colaborador</h3>
-            <form method="post" ENCTYPE="multipart/form-data">
+            <h3 style="margin-top: 25px; margin-bottom: 25px; ">
+                Novo Colaborador
+            </h3>
+            <form method="post" ENCTYPE="multipart/form-data" style="background-color:;">
                 <div class="form-group">
                     {% csrf_token %}
                     {{ form|bootstrap }}
-                    <button type="submit" class="btn btn-primary" style="margin-top: 50px">Salvar</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px; margin-bottom: 30px;">
+                        Salvar
+                    </button>
                 </div>
             </form>
         </div>

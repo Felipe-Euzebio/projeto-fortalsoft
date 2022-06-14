@@ -6,6 +6,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 # Aqui encontram-se as operações CRUD de "Colaborador"
 
+# Admin dos Colaboradores
+@login_required
+def admin(request):
+    return render(request, 'admin.html')
+
 # Create
 @login_required
 def colaborador_create(request):

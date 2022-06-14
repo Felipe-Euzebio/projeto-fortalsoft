@@ -13,10 +13,11 @@ class ColaboradorForm(ModelForm):
             'email',
             'conta_bancaria',
             'agencia_bancaria',
+            'tipo_conta',
             'descricao_banco',
             'codigo_banco',
             'dv_banco',
             'dv_conta',
             'operacao_conta',
-            'tipo_conta'
+            'feedback'
         ]

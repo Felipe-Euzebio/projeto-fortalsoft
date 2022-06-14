@@ -1,56 +1,113 @@
-{% extends 'base.html' %}
+{% extends 'admin_base.html' %}
 
 {% block title %} Lista de Colaboradores {% endblock %}
 
 {% block main %}
 
-<div class="container">
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-sm-6 novo-cliente">
-                <a href="{% url 'colaborador_create' %}">
-                    <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg">&nbsp;Novo Colaborador</i></button>
-                </a>
-            </div>
-
-            {% csrf_token %}
-            <form class="col-sm-6" ENCTYPE="multipart/form-data">
-                <div class="input-group mb-3 search-bar">
-                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                  <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="bi bi-search">&nbsp;Pesquisar</i>
-                    </button>
-                  </div>
-                </div>
-            </form>
-
-            <!-- -->
-            <div class="col-sm-12">
-                <ul class="list-group">
-                    <h3>Listagem de Colaboradores</h3>
-                    {%  for colaborador in colaboradores  %}
-                        <li class="list-group-item">
-                            <!-- Linkando os usuários da lista para a página e passando os seus respectivos IDs -->
-                            {{ colaborador.nome }} {{ colaborador.sobrenome }}
-
-                            <a href="{% url 'colaborador_update' colaborador.id %}" class="edit-item">
-                                <button type="button" class="btn btn-warning" style="color: white"><i class="bi bi-pencil"></i>&nbsp;Editar</button>
-                            </a>
-
-                            <a href="{% url 'colaborador_delete' colaborador.id %}" class="delete-item">
-                                <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i>&nbsp;Deletar</button>
-                            </a>
-                        </li>
-                    {%  endfor  %}
-                </ul>
-                <br>
-            </div>
-
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <a href="{% url 'colaborador_create' %}">
+                <button type="button" class="btn btn-primary"><i class="bi bi-plus-lg">&nbsp;Novo Colaborador</i></button>
+            </a>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Lista de Colaboradores</li>
+            </ol>
+          </div>
         </div>
-    </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Lista de Colaboradores</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="dt_colaboradores" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nome Completo</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Conta Bancária</th>
+                    <th>Agência Bancária</th>
+                    <th>Tipo da Conta</th>
+                    <th>Banco</th>
+                    <th>Operações</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {%  for colaborador in colaboradores  %}
+                  <tr>
+                    <td>{{ colaborador.nome }} {{ colaborador.sobrenome }}</td>
+                    <td>{{ colaborador.cpf }}</td>
+                    <td>{{ colaborador.email }}</td>
+                    <td>{{ colaborador.conta_bancaria }}</td>
+                    <td>{{ colaborador.agencia_bancaria }}</td>
+                    <td>{{ colaborador.tipo_conta}}</td>
+                    <td>{{ colaborador.descricao_banco }}</td>
+                    <td>
+                      <a href="{% url 'colaborador_update' colaborador.id %}" class="edit-item">
+                        <button type="button" class="btn btn-warning" style="color: white"><i class="bi bi-pencil">&nbsp;Editar</i></button>
+                      </a>
+                      <a href="{% url 'colaborador_delete' colaborador.id %}" class="delete-item">
+                        <button type="button" class="btn btn-danger"><i class="bi bi-trash">&nbsp;Deletar</i></button>
+                      </a>
+                    </td>
+                  </tr>
+                  {%  endfor  %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Nome Completo</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Conta Bancária</th>
+                    <th>Agência Bancária</th>
+                    <th>Tipo da Conta</th>
+                    <th>Banco</th>
+                    <th>Operações</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
+<!-- ./wrapper -->
+
 {% endblock %}
+
+
 
